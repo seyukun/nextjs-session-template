@@ -1,0 +1,16 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: dockerfile.db      
+    env_file:
+      - .env
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile.web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: always
