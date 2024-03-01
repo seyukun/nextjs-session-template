@@ -1,0 +1,11 @@
+services:
+  db:
+    image: mariadb
+    env_file:
+      - ../.env
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
