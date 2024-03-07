@@ -28,11 +28,7 @@ export default async function handler(
       }
       await session.save();
       await prisma.$disconnect();
-      res.send(`
-      <script>
-        window.location.href="/login"
-      </script>
-      `);
+      res.redirect("/login");
       return;
     }
   }
