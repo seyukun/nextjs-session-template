@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import bcrypt from "bcrypt";
 import prisma from "@/pages/libs/prisma";
 import { getSession } from "@/pages/libs/next-session";
 
@@ -13,12 +14,13 @@ export default async function handler(
       let find = await prisma.users.findMany({
         where: {
           username: String(req.body.username),
-          password: String(req.body.password),
         },
       });
-      if (find.length > 0) {
+      if (
+        find.length > 0 &&
+        bcrypt.compareSync(String(req.body.password), find[0].password)
+      ) {
         if (!session.data) session.data = {};
-        console.log(session.data);
         session.data = Object.assign(session.data, {
           id: find[0].id,
           username: find[0].username,

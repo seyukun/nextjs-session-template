@@ -8,12 +8,11 @@ export default async function handler(
 ) {
   if (req.method == "POST") {
     if (req.body.username && req.body.password) {
-      const encrypt = (v: string) => bcrypt.hashSync(v, 10);
       await prisma.$connect();
       let find = await prisma.users.create({
         data: {
           username: req.body.username,
-          password: encrypt(req.body.password),
+          password: bcrypt.hashSync(req.body.password, 10),
         },
       });
       await prisma.$disconnect();
