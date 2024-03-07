@@ -9,7 +9,9 @@ type Props = {
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession(req, res);
 
+  console.log("ok1");
   if (getSessionData(session, "id")) {
+    console.log("ok2");
     let props: Props = {
       id: Number(session.data.id),
       username: String(session.data.username),
@@ -27,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 export default function Login(props: Props) {
   return (
     <div>
-    <h2>You Logged in as {props.username} !!</h2>
+      <h2>You Logged in as {props.username} !!</h2>
       <form action="/api/logout" method="post">
         <button className="block" type="submit">
           logout

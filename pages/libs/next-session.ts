@@ -11,7 +11,7 @@ export interface SessionType {
 
 export const getSession = async (
   req: IncomingMessage | Request,
-  res: Response | ServerResponse<IncomingMessage>
+  res: Response | ServerResponse<IncomingMessage>,
 ) => {
   return await iron.getIronSession<SessionType>(req, res, {
     password: "k6y934r4HJCAuwJC61HNk6y934r4HJCAuwJC61HN", // Randomly generated
@@ -26,7 +26,7 @@ export const getSession = async (
 
 export const getSessionData = (
   session: iron.IronSession<SessionType>,
-  key: string
+  key: string,
 ) => {
   if (!session.data) return null;
   else {

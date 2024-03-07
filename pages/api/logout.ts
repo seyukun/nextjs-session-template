@@ -4,7 +4,7 @@ import { getSession } from "@/pages/libs/next-session";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method == "POST") {
     const session = await getSession(req, res);
