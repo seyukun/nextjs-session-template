@@ -14,7 +14,7 @@ export const getSession = async (
   res: Response | ServerResponse<IncomingMessage>
 ) => {
   return await iron.getIronSession<SessionType>(req, res, {
-    password: "k6y934r4HJCAuwJC61HNk6y934r4HJCAuwJC61HN",  // Randomly generated
+    password: "k6y934r4HJCAuwJC61HNk6y934r4HJCAuwJC61HN", // Randomly generated
     cookieName: "default",
     cookieOptions: {
       httpOnly: process.env.NEXTJS_HTTP_ONLY === "true",
