@@ -11,7 +11,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, you need to prepare database.
 ```bash
 docker build -t my-mariadb .
-docker run -it \
+docker run -it -d \
     --name database \
     -p 3306:3306/tcp \
     --env-file=.env \
